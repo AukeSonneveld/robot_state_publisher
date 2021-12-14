@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<robot name="momo">
+  <link name="base_link">
+    <visual>
+    <origin xyz="0 0.08 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.3 0.57 0.0022"/>
+      </geometry>
+    </visual>
+    <collision>
+    <origin xyz="0 0.08 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.3 0.57 0.0022"/>
+      </geometry>
+    </collision>
+
+    <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.36 0.21 0.0022"/>
+      </geometry>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.36 0.21 0.0022"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="rplidar">
+    <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.03625" length="0.041"/>
+      </geometry>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0.1645" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.03625" length="0.041"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="realsense">
+    <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.09 0.025 0.025"/>
+      </geometry>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0.110" rpy="0 0 0" />
+      <geometry>
+        <box size="0.09 0.025 0.025"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rplidar_joint" type="fixed">
+    <origin xyz="0 0.146 0.1656" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="rplidar"/>
+  </joint>
+
+  <joint name="realsense_joint" type="revolute">
+    <origin xyz="0 0.1295 0.1111" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14159265" upper="3.14159265" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="realsense"/>
+  </joint>
+
+</robot>
